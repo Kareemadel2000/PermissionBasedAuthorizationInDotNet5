@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using PermissionBasedAuthorizationInDotNet5.Constant
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -21,9 +22,17 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+                        @if (User.IsInRole(Roles.SuperAdmin.ToString()))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Index">Manager Users</a>
+                            </li>
+                        }
+                       
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Roles" asp-action="Index">Manager Roles</a>
+                            </li>
+                        
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>

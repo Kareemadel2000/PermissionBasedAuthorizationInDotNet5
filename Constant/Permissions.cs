@@ -16,6 +16,16 @@ namespace PermissionBasedAuthorizationInDotNet5.Constant
                 $"Permissions.{model}.Edit",
                 $"Permissions.{model}.Delete",
             };
-        } 
+        }
+
+        public static List<string> GenerateAllPermissions()
+        {
+            var allPermission = new List<string>();
+            var models = Enum.GetValues(typeof(Models));
+            foreach (var model in models)
+                allPermission.AddRange(GeneratePermissionsList(model.ToString()));
+
+            return allPermission;
+        }
     }
 }
